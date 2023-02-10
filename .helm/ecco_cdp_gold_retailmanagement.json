@@ -1,0 +1,180 @@
+{
+    "project_root": "/dist/ecco_cdp_gold_retailmanagement",
+    "project_version": "v0.1.28",
+    "models_path": "models",
+    "subscription_id": "6c5538ce-b24a-4e2a-877f-979ad71287ff",
+    "cluster": {
+        "new_cluster": {
+            "spark_version": "11.3.x-scala2.12",
+            "autoscale": {
+                "min_workers": 2,
+                "max_workers": 10
+            },
+            "instance_pool_id": "1207-110608-flaw42-pool-0yhqficy",
+            "driver_instance_pool_id": "1207-110608-slags40-pool-t4mz70du",
+            "custom_tags": {
+                "Customer": "Ecco",
+                "Component": "CDP"
+            },
+            "spark_env_vars": {
+                "PIP_INDEX_URL": "{{secrets/cdp_workspace/pipIndex}}"
+            },
+            "spark_conf": {
+                "spark.hadoop.fs.azure.account.oauth2.client.secret": "{{secrets/cdp_workspace/sparkClientSecret}}",
+                "spark.hadoop.fs.azure.account.oauth2.client.endpoint": "https://login.microsoftonline.com/06152121-b4c5-4544-abf5-9268e75db448/oauth2/token",
+                "spark.hadoop.fs.azure.account.oauth2.client.id": "0c91cb4e-4a30-4bea-a590-827f8d21e5f6",
+                "spark.hadoop.fs.azure.account.auth.type": "OAuth",
+                "spark.hadoop.fs.azure.account.oauth.provider.type": "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider",
+                "spark.hadoop.javax.jdo.option.ConnectionDriverName": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+                "spark.hadoop.javax.jdo.option.ConnectionURL": "jdbc:sqlserver://esd-hivemetastore-production.database.windows.net:1433;DatabaseName=sparkdatalake",
+                "spark.hadoop.javax.jdo.option.ConnectionUserName": "delamain",
+                "spark.hadoop.javax.jdo.option.ConnectionPassword": "{{secrets/cdp_workspace/hiveMetastoreSecret}}",
+                "spark.sql.hive.metastore.jars": "builtin",
+                "spark.sql.hive.metastore.version": "2.3.9"
+            }
+        },
+        "libraries": []
+    },
+    "version_probes": [],
+    "power_bi": {
+        "workspace_guid": "087bf472-d460-4b00-bbdf-b68cc94dae36",
+        "datasets": [
+            {
+                "guid": "3aedf156-911a-4dd3-b55c-a44a228e27f8",
+                "name": "retail_management_refresh"
+            }
+        ]
+    },
+    "graph": [
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.customer_dag",
+            "children": [],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.date",
+            "children": [],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.delivery_current_shipment_item",
+            "children": [],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.delivery_item",
+            "children": [
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.customer",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.sales_order_line",
+                    "children": [],
+                    "tags": []
+                }
+            ],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.exchange_rate",
+            "children": [],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.invoice_item",
+            "children": [
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.customer",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.exchange_rate",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.product",
+                    "children": [],
+                    "tags": []
+                }
+            ],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.invoice_type",
+            "children": [],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.order_intake_merged",
+            "children": [
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.delivery_current_shipment_item",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.delivery_item",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.invoice_item",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.sales_order_line",
+                    "children": [],
+                    "tags": []
+                }
+            ],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.order_type",
+            "children": [],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.power_bi_order_intake",
+            "children": [
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.order_intake_merged",
+                    "children": [],
+                    "tags": []
+                }
+            ],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.product",
+            "children": [],
+            "tags": []
+        },
+        {
+            "id": "model.ecco_cdp_sales_and_distribution.sales_order_line",
+            "children": [
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.customer",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.exchange_rate",
+                    "children": [],
+                    "tags": []
+                },
+                {
+                    "id": "model.ecco_cdp_sales_and_distribution.product_dag",
+                    "children": [],
+                    "tags": []
+                }
+            ],
+            "tags": []
+        }
+    ]
+}
