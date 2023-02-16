@@ -1,6 +1,6 @@
 {
     "project_root": "/dist/ecco_cdp_gold_retailmanagement",
-    "project_version": "v0.1.28",
+    "project_version": "1.34dupa",
     "models_path": "models",
     "subscription_id": "6c5538ce-b24a-4e2a-877f-979ad71287ff",
     "cluster": {
@@ -47,7 +47,7 @@
     },
     "graph": [
         {
-            "id": "model.ecco_cdp_sales_and_distribution.customer_dag",
+            "id": "model.ecco_cdp_sales_and_distribution.customer_dag_dupa",
             "children": [],
             "tags": []
         },
@@ -169,7 +169,7 @@
                     "tags": []
                 },
                 {
-                    "id": "model.ecco_cdp_sales_and_distribution.product_dag",
+                    "id": "model.ecco_cdp_sales_and_distribution.product",
                     "children": [],
                     "tags": []
                 }
